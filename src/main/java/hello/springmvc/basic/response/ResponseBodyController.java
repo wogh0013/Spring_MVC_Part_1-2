@@ -8,12 +8,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Slf4j
-@Controller
+//@Controller
+//@ResponseBody
+@RestController //@Controller + @ResponseBody
 public class ResponseBodyController {
 
     //문자 처리 ~~
@@ -30,7 +33,7 @@ public class ResponseBodyController {
     }
 
     //HTTP 메시지 컨버터를 통해 HTTP 메시지 직접 입력 (view 사용 X)
-    @ResponseBody // HTTP 메시지 바디에 입력
+//    @ResponseBody // HTTP 메시지 바디에 입력
     @GetMapping("/response-body-string-v3")
     public String responseBodyV3(){
         return "ok";
@@ -38,7 +41,7 @@ public class ResponseBodyController {
 
     //JSON 처리 ~~
     //HTTP 메시지 컨버터를 통해서 HTTP 메시지 직접 입력
-    @ResponseBody
+//    @ResponseBody
     @GetMapping("/response-body-json-v1")
     public ResponseEntity<HelloData> responseBodyJsonV1(){
         HelloData helloData = new HelloData();
@@ -50,7 +53,7 @@ public class ResponseBodyController {
 
     //응답 코드를 동적으로 변경하고 싶으면 애너테이션 말고 ResponseEntity 사용
     @ResponseStatus(HttpStatus.OK) //HTTP 상태 코드 변경 애너테이션
-    @ResponseBody
+//    @ResponseBody
     @GetMapping("/response-body-json-v2")
     public HelloData responseBodyJsonV2(){
         HelloData helloData = new HelloData();
@@ -59,4 +62,6 @@ public class ResponseBodyController {
 
         return helloData;
     }
+
+
 }
